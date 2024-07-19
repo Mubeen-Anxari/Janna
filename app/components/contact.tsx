@@ -5,7 +5,7 @@ import { IoEarthOutline } from "react-icons/io5";
 export default function Contact() {
   return (
     <div className="">
-      <div className="lg:mx-44    max-w-[1400px] m-auto bg-cyan-900  mt-20 flex gap-10 p-4 rounded-lg flex-col-reverse lg:flex-row">
+      <div className="    max-w-[1200px] m-auto bg-cyan-900  mt-20 flex gap-10 p-4 rounded-lg flex-col-reverse lg:flex-row">
         <div className="">
           <div className="flex justify-center">
             <Image
