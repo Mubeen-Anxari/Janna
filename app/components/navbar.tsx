@@ -1,61 +1,87 @@
 "use client"
-import React from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-export default function Navbar() {
+import React from "react";
+import {Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link, Button} from "@nextui-org/react";
+import Image from "next/image";
+export default function App() {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  const menuItems = [
+    "Profile",
+    "Dashboard",
+    "Activity",
+    "Analytics",
+    "System",
+    "Deployments",
+    "My Settings",
+    "Team Settings",
+    "Help & Feedback",
+    "Log Out",
+  ];
+
   return (
-    <div className='max-w-[1400px] m-auto '>
-        <nav className="p-4">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-center">
-          {/* Brand/logo */}
-          <div className="flex-shrink-0">
-            <Link href="/">
-           <Image src='Janna.svg' width={150} height={100} alt='pic'></Image>
-            </Link>
-          </div>
+    <Navbar className="bg-transparent " onMenuOpenChange={setIsMenuOpen}>
+      <NavbarContent>
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="sm:hidden"
+        />
+        <NavbarBrand className=" flex justify-start">
+          <Image  src="/Janna.svg" height={100} width={100} alt="pic"></Image>
+        </NavbarBrand>
+      </NavbarContent>
 
+      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+      <NavbarItem>
+          <Link className="underline text-white text-sm" color="foreground" href="#">
+            Home
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link className=" text-white text-sm"  color="foreground" href="#">
+          ABOUT ME
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link className=" text-white text-sm"  color="foreground" href="#">
+          PROJECTS
+          </Link>
+        </NavbarItem>
+      
+        <NavbarItem>
+          <Link className=" text-white text-sm"  color="foreground" href="#">
+          SERVICES
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link className=" text-white text-sm"  color="foreground" href="#">
+          CONTACT
+          </Link>
+        </NavbarItem>
+      </NavbarContent>
+      <NavbarContent justify="end">
         
-          <div className="hidden md:flex flex-grow gap-10 justify-end items-center space-x-4">
-            <Link className='text-white underline' href="/">
-              Home
+        <NavbarItem className="hidden lg:flex">
+          <Button className=" bg-blue-700 text-white rounded-full" as={Link} href="#" variant="flat">
+            LET'S TALK
+          </Button>
+        </NavbarItem>
+      </NavbarContent>
+      <NavbarMenu>
+        {menuItems.map((item, index) => (
+          <NavbarMenuItem key={`${item}-${index}`}>
+            <Link
+              color={
+                index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
+              }
+              className="w-full"
+              href="#"
+              size="lg"
+            >
+              {item}
             </Link>
-            <Link  className='text-white' href="/about">
-              About Me
-            </Link>
-            <Link  className='text-white' href="/about">
-              Projects
-            </Link>
-            <Link  className='text-white' href="/services">
-              Services
-            </Link>
-            <Link  className='text-white' href="/contact">
-              Contact
-            </Link>
-            {/* <button className=' bg-blue-600 p-4  w-[150px] rounded-full text-white'> LET's TAlK</button> */}
-          </div>
-
-          <div className="md:hidden">
-            <button className="text-white focus:outline-none">
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16m-7 6h7"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    </nav>
-    </div>
-  )
+          </NavbarMenuItem>
+        ))}
+      </NavbarMenu>
+    </Navbar>
+  );
 }
